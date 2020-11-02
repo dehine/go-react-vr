@@ -1,6 +1,6 @@
 module github.com/auth0-blog/go-vr-auth
 
-go 1.14
+go 1.13
 
 require (
 	github.com/auth0/go-jwt-middleware v0.0.0-20190805220309-36081240882b
