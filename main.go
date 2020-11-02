@@ -51,13 +51,13 @@ func main() {
 	jwtMiddleware := jwtmiddleware.New(jwtmiddleware.Options{
 		ValidationKeyGetter: func(token *jwt.Token) (interface{}, error) {
 			// Verify 'aud' claim
-			aud := "YOUR_API_IDENTIFIER"
+			aud := "dhine_api/endpoint"
 			checkAud := token.Claims.(jwt.MapClaims).VerifyAudience(aud, false)
 			if !checkAud {
 				return token, errors.New("Invalid audience.")
 			}
 			// Verify 'iss' claim
-			iss := "https://YOUR_DOMAIN/"
+			iss := "https://dhine.us.auth0.com/"
 			checkIss := token.Claims.(jwt.MapClaims).VerifyIssuer(iss, false)
 			if !checkIss {
 				return token, errors.New("Invalid issuer.")
@@ -120,7 +120,7 @@ var AddFeedbackHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Re
 
 func getPemCert(token *jwt.Token) (string, error) {
 	cert := ""
-	resp, err := http.Get("https://YOUR-DOMAIN.com/.well-known/jwks.json")
+	resp, err := http.Get("https://dhine.us.auth0.com/.well-known/jwks.json")
 
 	if err != nil {
 		return cert, err
